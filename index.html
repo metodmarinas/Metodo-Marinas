@@ -1,182 +1,607 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mariñas Taller Automotriz - Chapa, Pintura y Mecánica</title>
-    <meta name="description" content="Más de 20 años de experiencia en pintura, chapa y reparaciones mecánicas. Confianza, rapidez y soluciones a medida para tu vehículo.">
-    <meta name="keywords" content="taller automotriz, chapa y pintura, mecánica general, reparación de autos, taller de confianza">
+    <title>Gran Rifa Ford Ka - Sorteo Lotería de la Ciudad</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0B132B',
+                            blue: '#1C2541',
+                            accent: '#3A506B',
+                            gold: '#D4AF37',
+                            goldHover: '#AA820A',
+                            success: '#10B981'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #121212;
-            color: #B0B0B0;
-        }
-        .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://placehold.co/1920x1080/121212/ffffff?text=Taller+Profesional');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        .gallery-item {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 15px -3px rgba(229, 57, 53, 0.2), 0 4px 6px -2px rgba(229, 57, 53, 0.1);
-        }
-        .cta-button {
-            transition: all 0.3s ease;
-        }
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 10px rgba(229, 57, 53, 0.4);
-        }
-        .service-card {
-             transition: all 0.3s ease;
-             border-color: #333;
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: #E53935;
-        }
-        .map-dark {
-            filter: invert(95%) hue-rotate(180deg) contrast(0.9);
+        /* Deshabilitar selección de texto molesta al clickear rápido en móviles */
+        .no-select {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen pb-24">
 
-    <!-- Header -->
-    <header id="header" class="bg-[#1a1a1a]/80 backdrop-blur-sm shadow-md sticky top-0 z-50 border-b border-zinc-800">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white">Mariñas <span class="text-[#E53935]">Taller Automotriz</span></a>
-            <div class="flex items-center space-x-4">
-                <a href="https://wa.me/541171091304" target="_blank" class="text-2xl text-green-500 hover:text-green-400 transition-colors"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://instagram.com/MarinasTallerAutomotriz" target="_blank" class="text-2xl text-pink-500 hover:text-pink-400 transition-colors"><i class="fab fa-instagram"></i></a>
+    <!-- HEADER / HERO -->
+    <header class="bg-gradient-to-br from-brand-navy via-brand-blue to-brand-accent text-white shadow-xl relative overflow-hidden">
+        <!-- Decoración de fondo de luces de auto -->
+        <div class="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-brand-gold/5 rounded-full blur-3xl"></div>
+
+        <div class="max-w-6xl mx-auto px-4 py-8 md:py-12 relative z-10">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                <!-- Información Principal -->
+                <div class="text-center md:text-left space-y-4 max-w-xl">
+                    <span class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full text-xs font-semibold bg-brand-gold/20 text-brand-gold border border-brand-gold/30">
+                        ⚡ ¡GRAN OPORTUNIDAD! Sorteo 100% Transparente
+                    </span>
+                    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
+                        Ganate este impecable <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-300">Ford Ka 3 Puertas</span>
+                    </h1>
+                    <p class="text-slate-300 text-base md:text-lg">
+                        ¡Listo para transferir y disfrutar! Sortea directamente por la **Lotería de la Ciudad de Buenos Aires** al completarse los números. ¡No te quedes afuera!
+                    </p>
+                    
+                    <!-- Tarjeta de Datos Rápidos -->
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 text-center">
+                            <span class="block text-xs text-slate-400 uppercase tracking-wider font-semibold">Valor del número</span>
+                            <span class="text-2xl font-black text-brand-gold">$12.000</span>
+                        </div>
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 text-center">
+                            <span class="block text-xs text-slate-400 uppercase tracking-wider font-semibold">Números en juego</span>
+                            <span class="text-2xl font-black text-white">000 - 999</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imagen Destacada del Auto (Carrusel Interactivo) -->
+                <div class="w-full md:w-1/2 max-w-md">
+                    <div class="bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/20 shadow-2xl">
+                        <!-- Visor de imagen -->
+                        <div class="relative h-64 md:h-72 w-full rounded-xl overflow-hidden bg-slate-900 group">
+                            <!-- Foto 1 (Frente - Patente JSI 775) -->
+                            <div id="slide-0" class="absolute inset-0 transition-opacity duration-500 ease-in-out flex flex-col justify-center items-center">
+                                <div class="absolute top-2 left-2 bg-brand-navy/80 text-white text-xs px-2.5 py-1 rounded-md font-bold">VISTA FRONTAL (Patente JSI 775)</div>
+                                <!-- Ilustración representativa de Ford Ka blanco moderno -->
+                                <svg class="w-48 h-48 text-slate-300 opacity-90" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 55 C10 40, 20 30, 45 28 C70 26, 85 32, 90 45 C92 50, 92 58, 90 62 C85 68, 15 68, 10 55 Z" fill="#F8FAFC" stroke="#94A3B8" stroke-width="2"/>
+                                    <path d="M45 28 C50 15, 75 15, 82 32 Z" fill="#1E293B" opacity="0.8"/>
+                                    <circle cx="28" cy="65" r="10" fill="#0F172A" stroke="#E2E8F0" stroke-width="3"/>
+                                    <circle cx="75" cy="65" r="10" fill="#0F172A" stroke="#E2E8F0" stroke-width="3"/>
+                                    <rect x="40" y="52" width="20" height="8" rx="2" fill="#E2E8F0" stroke="#475569"/>
+                                    <text x="43" y="58" font-family="monospace" font-size="4" fill="#000" font-weight="bold">JSI 775</text>
+                                    <circle cx="15" cy="48" r="4" fill="#FEF08A" opacity="0.9"/>
+                                    <circle cx="88" cy="46" r="4" fill="#FEF08A" opacity="0.9"/>
+                                </svg>
+                                <span class="absolute bottom-3 text-center text-xs text-slate-400 bg-black/40 px-3 py-1 rounded-full">Ford Ka Blanco - Carrocería Impecable</span>
+                            </div>
+
+                            <!-- Foto 2 (Lateral) -->
+                            <div id="slide-1" class="absolute inset-0 transition-opacity duration-500 ease-in-out opacity-0 flex flex-col justify-center items-center">
+                                <div class="absolute top-2 left-2 bg-brand-navy/80 text-white text-xs px-2.5 py-1 rounded-md font-bold">VISTA LATERAL (3 Puertas)</div>
+                                <svg class="w-48 h-48 text-slate-300 opacity-90" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 55 C5 45, 12 35, 30 30 C50 25, 80 32, 95 45 C98 52, 92 64, 85 64 L15 64 C8 64, 5 62, 5 55 Z" fill="#F8FAFC" stroke="#94A3B8" stroke-width="2"/>
+                                    <path d="M30 31 C35 22, 55 22, 60 32 Z" fill="#1E293B" opacity="0.8"/>
+                                    <path d="M62 32 C65 24, 80 28, 85 36 Z" fill="#1E293B" opacity="0.8"/>
+                                    <circle cx="25" cy="62" r="11" fill="#0F172A" stroke="#E2E8F0" stroke-width="3"/>
+                                    <circle cx="75" cy="62" r="11" fill="#0F172A" stroke="#E2E8F0" stroke-width="3"/>
+                                    <rect x="42" y="45" width="8" height="2" rx="1" fill="#000"/>
+                                </svg>
+                                <span class="absolute bottom-3 text-center text-xs text-slate-400 bg-black/40 px-3 py-1 rounded-full">Llantas deportivas originales y cubiertas excelentes</span>
+                            </div>
+
+                            <!-- Foto 3 (Trasera) -->
+                            <div id="slide-2" class="absolute inset-0 transition-opacity duration-500 ease-in-out opacity-0 flex flex-col justify-center items-center">
+                                <div class="absolute top-2 left-2 bg-brand-navy/80 text-white text-xs px-2.5 py-1 rounded-md font-bold">VISTA TRASERA</div>
+                                <svg class="w-48 h-48 text-slate-300 opacity-90" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 45 C15 32, 25 28, 50 28 C75 28, 85 32, 85 45 C85 58, 80 65, 50 65 C20 65, 15 58, 15 45 Z" fill="#F8FAFC" stroke="#94A3B8" stroke-width="2"/>
+                                    <path d="M22 32 C28 20, 72 20, 78 32 Z" fill="#1E293B" opacity="0.8"/>
+                                    <rect x="38" y="52" width="24" height="8" rx="2" fill="#E2E8F0" stroke="#475569"/>
+                                    <text x="44" y="58" font-family="monospace" font-size="4" fill="#000" font-weight="bold">JSI 775</text>
+                                    <path d="M16 45 C16 42, 20 42, 20 45 L18 52 C16 52, 16 48, 16 45 Z" fill="#EF4444"/>
+                                    <path d="M84 45 C84 42, 80 42, 80 45 L82 52 C84 52, 84 48, 84 45 Z" fill="#EF4444"/>
+                                </svg>
+                                <span class="absolute bottom-3 text-center text-xs text-slate-400 bg-black/40 px-3 py-1 rounded-full">Baúl amplio y excelente estado general</span>
+                            </div>
+                        </div>
+
+                        <!-- Miniaturas selectores del carrusel -->
+                        <div class="grid grid-cols-3 gap-2 mt-3">
+                            <button onclick="setSlide(0)" id="thumb-0" class="border-2 border-brand-gold bg-white/10 rounded-lg p-1 transition-all">
+                                <span class="block text-[10px] text-center font-bold text-white uppercase">Frente</span>
+                            </button>
+                            <button onclick="setSlide(1)" id="thumb-1" class="border-2 border-transparent bg-white/10 rounded-lg p-1 transition-all opacity-60">
+                                <span class="block text-[10px] text-center font-bold text-white uppercase">Lateral</span>
+                            </button>
+                            <button onclick="setSlide(2)" id="thumb-2" class="border-2 border-transparent bg-white/10 rounded-lg p-1 transition-all opacity-60">
+                                <span class="block text-[10px] text-center font-bold text-white uppercase">Atrás</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <main>
-        <!-- Sección de Inicio (Hero) -->
-        <section id="inicio" class="hero-bg text-white min-h-screen flex items-center justify-center">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-black mb-4 leading-tight">Mariñas Taller Automotriz</h1>
-                <p class="text-xl md:text-2xl font-semibold text-white mb-4">Tu auto como nuevo, sin vueltas.</p>
-                <h2 class="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-[#B0B0B0]">Más de 20 años de experiencia en pintura, chapa y reparaciones mecánicas.</h2>
-                <a href="https://wa.me/541171091304?text=Hola,%20quisiera%20hacer%20una%20consulta%20para%20mi%20auto." target="_blank" class="cta-button bg-[#E53935] text-white font-bold py-3 px-8 rounded-lg text-lg inline-flex items-center gap-2">
-                    <i class="fab fa-whatsapp"></i> Consultar Ahora
-                </a>
-            </div>
-        </section>
-
-        <!-- Sección Sobre Nosotros -->
-        <section id="nosotros" class="py-20 bg-[#1a1a1a]">
-            <div class="container mx-auto px-6 text-center max-w-4xl">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Confianza y Calidad Familiar</h2>
-                <p class="text-lg text-[#B0B0B0] mb-8">Con más de 20 años trabajando en la industria automotriz, ofrecemos servicios de pintura, chapa y reparación de vehículos. Somos un taller familiar que garantiza confianza y calidad en cada trabajo.</p>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-[#212121] p-6 rounded-lg border border-zinc-800">
-                        <h3 class="text-xl font-bold text-white mb-2">Confianza</h3>
-                        <p>Trato directo y honesto. Te explicamos todo con claridad para que sepas qué necesita tu auto.</p>
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- SECCIÓN: PASOS PARA PARTICIPAR -->
+        <section class="mb-10">
+            <h2 class="text-xl font-bold text-brand-navy mb-4 text-center md:text-left flex items-center gap-2">
+                <span class="flex items-center justify-center bg-brand-gold text-brand-navy rounded-full w-6 h-6 text-sm">💡</span>
+                ¿Cómo comprar tu número?
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex gap-3 items-start">
+                    <span class="text-brand-gold text-2xl font-black">1.</span>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-sm">Elegí tus números</h3>
+                        <p class="text-xs text-slate-500">Seleccioná uno o varios números disponibles del tablero táctil abajo.</p>
                     </div>
-                    <div class="bg-[#212121] p-6 rounded-lg border border-zinc-800">
-                        <h3 class="text-xl font-bold text-white mb-2">Rapidez</h3>
-                        <p>Entendemos tu urgencia. Trabajamos de forma eficiente para que tengas tu vehículo lo antes posible.</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex gap-3 items-start">
+                    <span class="text-brand-gold text-2xl font-black">2.</span>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-sm">Completá tus datos</h3>
+                        <p class="text-xs text-slate-500">Ingresá tu nombre y teléfono para que podamos registrar tu jugada.</p>
                     </div>
-                    <div class="bg-[#212121] p-6 rounded-lg border border-zinc-800">
-                        <h3 class="text-xl font-bold text-white mb-2">Soluciones a Medida</h3>
-                        <p>Nos adaptamos a cualquier necesidad, buscando siempre la mejor solución para vos y tu auto.</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex gap-3 items-start">
+                    <span class="text-brand-gold text-2xl font-black">3.</span>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-sm">Reservá por WhatsApp</h3>
+                        <p class="text-xs text-slate-500">El sistema te enviará a nuestro chat para enviarnos el comprobante de pago.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección Servicios -->
-        <section id="servicios" class="py-20 bg-[#121212]">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">Servicios Profesionales</h2>
+        <!-- SECCIÓN DE SELECCIÓN DE NÚMEROS -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- PANEL IZQUIERDO Y CENTRAL: TABLERO DE NÚMEROS -->
+            <div class="lg:col-span-2 space-y-6">
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 md:p-6">
+                    
+                    <!-- Encabezado del Tablero y Buscador -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h2 class="text-2xl font-black text-brand-navy">Elegí tus números</h2>
+                            <p class="text-xs text-slate-400">Hacé clic para seleccionar. Podés elegir la cantidad que quieras.</p>
+                        </div>
+                        
+                        <!-- Buscador de Número Específico -->
+                        <div class="relative max-w-xs">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                            </span>
+                            <input type="number" id="search-input" min="0" max="999" placeholder="Buscar número (ej: 775)" 
+                                class="w-full pl-9 pr-4 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue"
+                                oninput="filterNumbers()">
+                        </div>
+                    </div>
+
+                    <!-- Botones de Selección Rápida (Azar) -->
+                    <div class="mb-6 p-3 bg-slate-50 rounded-xl border border-slate-200">
+                        <span class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">⚡ Selección Rápida al Azar</span>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                            <button onclick="selectRandom(1)" class="py-2 px-3 bg-brand-blue text-white rounded-lg text-xs font-bold hover:bg-brand-navy transition duration-200 shadow-sm">
+                                🎲 Comprar 1 azar
+                            </button>
+                            <button onclick="selectRandom(3)" class="py-2 px-3 bg-brand-blue text-white rounded-lg text-xs font-bold hover:bg-brand-navy transition duration-200 shadow-sm">
+                                🎲 Comprar 3 azar
+                            </button>
+                            <button onclick="selectRandom(5)" class="py-2 px-3 bg-brand-blue text-white rounded-lg text-xs font-bold hover:bg-brand-navy transition duration-200 shadow-sm">
+                                🎲 Comprar 5 azar
+                            </button>
+                            <button onclick="selectRandom(10)" class="py-2 px-3 bg-brand-gold text-brand-navy rounded-lg text-xs font-black hover:bg-brand-goldHover transition duration-200 shadow-sm">
+                                🔥 Comprar 10 azar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Referencias de Estado -->
+                    <div class="flex flex-wrap items-center gap-4 text-xs font-medium text-slate-500 mb-4 border-b border-slate-100 pb-3">
+                        <span class="flex items-center gap-1.5">
+                            <span class="w-3.5 h-3.5 rounded bg-slate-100 border border-slate-300 inline-block"></span> Disponible
+                        </span>
+                        <span class="flex items-center gap-1.5">
+                            <span class="w-3.5 h-3.5 rounded bg-brand-gold text-brand-navy inline-block text-center text-[10px] font-bold">✓</span> Seleccionado
+                        </span>
+                        <span class="flex items-center gap-1.5">
+                            <span class="w-3.5 h-3.5 rounded bg-slate-300 opacity-60 inline-block"></span> Reservado / Vendido
+                        </span>
+                    </div>
+
+                    <!-- Selector de Rangos (Pestañas para rendimiento móvil óptimo) -->
+                    <div class="flex overflow-x-auto gap-1 mb-4 pb-2 scrollbar-none no-select" id="tabs-container">
+                        <!-- Generado dinámicamente -->
+                    </div>
+
+                    <!-- Grilla de Números -->
+                    <div class="grid grid-cols-5 sm:grid-cols-10 gap-2 max-h-[400px] overflow-y-auto p-1 border border-slate-100 rounded-lg no-select" id="numbers-grid">
+                        <!-- Generado dinámicamente por JS para el rango actual -->
+                    </div>
+                    
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                    <div class="service-card bg-[#212121] p-8 rounded-lg border">
-                        <i class="fas fa-paint-brush text-4xl text-[#E53935] mb-4"></i>
-                        <h3 class="text-xl font-bold text-white mb-2">Pintura Automotriz</h3>
-                        <p class="text-sm">Pintura, pulido y retoques.</p>
+            </div>
+
+            <!-- PANEL DERECHO: FORMULARIO DE RESERVA / RESUMEN -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-lg p-5 sticky top-4 space-y-6">
+                    <div>
+                        <h3 class="text-lg font-black text-brand-navy flex items-center gap-2">
+                            🛒 Mi Reserva
+                        </h3>
+                        <p class="text-xs text-slate-400">Verificá tus números elegidos para confirmar.</p>
                     </div>
-                    <div class="service-card bg-[#212121] p-8 rounded-lg border">
-                        <i class="fas fa-hammer text-4xl text-[#E53935] mb-4"></i>
-                        <h3 class="text-xl font-bold text-white mb-2">Chapa y Reparaciones</h3>
-                        <p class="text-sm">Reparaciones de chapa sin pérdida de calidad.</p>
+
+                    <!-- Caja de Números Seleccionados -->
+                    <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 min-h-[80px] flex flex-col justify-between">
+                        <div class="text-xs text-slate-400 mb-2">Números seleccionados:</div>
+                        <div id="selected-list" class="flex flex-wrap gap-1.5">
+                            <!-- JS inyectará las píldoras de números aquí -->
+                            <span class="text-xs text-slate-400 italic">No seleccionaste ningún número aún.</span>
+                        </div>
                     </div>
-                    <div class="service-card bg-[#212121] p-8 rounded-lg border">
-                        <i class="fas fa-wrench text-4xl text-[#E53935] mb-4"></i>
-                        <h3 class="text-xl font-bold text-white mb-2">Mecánica General</h3>
-                        <p class="text-sm">Revisiones y mantenimiento general.</p>
+
+                    <!-- Resumen de Costos -->
+                    <div class="border-t border-slate-100 pt-4 space-y-2">
+                        <div class="flex justify-between text-xs text-slate-500">
+                            <span>Cantidad de números:</span>
+                            <span class="font-bold" id="resumen-cantidad">0</span>
+                        </div>
+                        <div class="flex justify-between text-xs text-slate-500">
+                            <span>Precio por unidad:</span>
+                            <span class="font-bold">$12.000</span>
+                        </div>
+                        <div class="flex justify-between items-center text-slate-800 pt-2 border-t border-dashed border-slate-200">
+                            <span class="text-sm font-bold text-brand-navy">Total a abonar:</span>
+                            <span class="text-2xl font-black text-brand-success" id="resumen-total">$0</span>
+                        </div>
                     </div>
-                    <div class="service-card bg-[#212121] p-8 rounded-lg border">
-                        <i class="fas fa-lightbulb text-4xl text-[#E53935] mb-4"></i>
-                        <h3 class="text-xl font-bold text-white mb-2">Soluciones a Medida</h3>
-                        <p class="text-sm">Reparaciones rápidas y personalizadas.</p>
+
+                    <!-- Formulario del Comprador -->
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1">Nombre Completo *</label>
+                            <input type="text" id="buyer-name" placeholder="Ej: Juan Pérez" 
+                                class="w-full text-sm px-3.5 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1">Teléfono de Contacto (con WhatsApp) *</label>
+                            <input type="tel" id="buyer-phone" placeholder="Ej: 11 1234 5678" 
+                                class="w-full text-sm px-3.5 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                        </div>
+                    </div>
+
+                    <!-- Botón de Envío por WhatsApp -->
+                    <button onclick="requestReservation()" class="w-full py-4 bg-brand-success hover:bg-emerald-600 text-white font-black rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 text-base">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.454L0 24zm6.59-4.846c1.6.95 3.198 1.451 4.85 1.453 5.464 0 9.903-4.44 9.907-9.911.002-2.65-1.03-5.143-2.902-7.019C16.632 1.799 14.137.769 11.49.769c-5.468 0-9.907 4.442-9.911 9.914-.001 1.724.456 3.41 1.32 4.916l-.995 3.634 3.723-.976zm11.365-6.864c-.29-.146-1.714-.846-1.979-.942-.266-.096-.459-.144-.652.146-.194.291-.748.942-.917 1.135-.169.193-.338.217-.628.072-.29-.145-1.226-.452-2.335-1.442-.863-.77-1.446-1.72-1.616-2.011-.17-.291-.018-.448.127-.592.13-.13.29-.339.435-.509.145-.17.193-.291.29-.485.097-.194.049-.364-.025-.509-.072-.146-.652-1.573-.893-2.155-.235-.568-.473-.49-.652-.499-.17-.008-.363-.01-.556-.01-.193 0-.507.073-.772.364-.266.291-1.014.992-1.014 2.422 0 1.43 1.039 2.812 1.184 3.006.145.194 2.045 3.123 4.954 4.382.692.3 1.232.479 1.653.613.696.222 1.329.191 1.83.116.558-.083 1.714-.701 1.956-1.378.24-.677.24-1.258.17-1.378-.073-.12-.266-.194-.556-.34z"/></svg>
+                        Reservar y pagar vía WhatsApp
+                    </button>
+                    
+                    <div class="text-[10px] text-center text-slate-400">
+                        * Tus datos están seguros y se usarán únicamente para la validación y comunicación directa del premio de esta rifa.
                     </div>
                 </div>
             </div>
         </section>
 
-    
-        <!-- Sección Ubicación -->
-        <section id="ubicacion" class="py-20 bg-[#121212]">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">¿Dónde Encontrarnos?</h2>
-                    <p class="text-lg text-[#B0B0B0] mt-4">?? Estamos en Zelaya, a 10 min de Pilar.</p>
-                    <a href="https://www.google.com/maps/place/Zelaya,+Provincia+de+Buenos+Aires" target="_blank" class="text-[#E53935] hover:underline mt-2 inline-block font-semibold">? Abrir en Google Maps</a>
-                </div>
-                <div class="w-full max-w-4xl mx-auto h-96 rounded-lg overflow-hidden shadow-lg border border-zinc-800">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26395.73815128328!2d-58.82518665!3d-34.3507119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bb61063230c6c7%3A0x334c267b4446549a!2sZelaya%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1663000000000!5m2!1ses-419!2sar" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map-dark"></iframe>
-                </div>
-            </div>
-        </section>
+        <!-- SECCIÓN: TRANSPARENCIA Y PREGUNTAS FRECUENTES -->
+        <section class="mt-12 bg-white rounded-2xl border border-slate-200 shadow-sm p-6 max-w-4xl mx-auto">
+            <h2 class="text-2xl font-black text-brand-navy mb-6 text-center">Transparencia e Información del Sorteo</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Columna 1 -->
+                <div class="space-y-4">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <h4 class="font-bold text-sm text-slate-800 mb-1">🎟️ ¿Cómo funciona el sorteo?</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            El ganador será el titular del número que coincida exactamente con las **últimas 3 cifras** del primer premio de la **Lotería de la Ciudad de Buenos Aires (Nocturna)** en la fecha que se fije una vez vendidos el 90% de los números.
+                        </p>
+                    </div>
 
-        <!-- Sección Contacto / CTA Final -->
-        <section id="contacto" class="py-20 bg-[#1a1a1a]">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">¿Listo para dejar tu auto como nuevo?</h2>
-                <p class="text-lg text-[#B0B0B0] mb-8 max-w-2xl mx-auto">Enviame un mensaje para un presupuesto sin cargo o seguime en Instagram para ver más trabajos.</p>
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <a href="https://wa.me/541171091304?text=Hola,%20quisiera%20pedir%20un%20presupuesto." target="_blank" class="cta-button w-full sm:w-auto bg-green-500 text-white font-bold py-3 px-8 rounded-lg text-lg inline-flex items-center justify-center gap-2">
-                        <i class="fab fa-whatsapp"></i> Solicitá presupuesto gratis
-                    </a>
-                    <a href="https://instagram.com/MarinasTallerAutomotriz" target="_blank" class="cta-button w-full sm:w-auto bg-pink-600 text-white font-bold py-3 px-8 rounded-lg text-lg inline-flex items-center justify-center gap-2">
-                        <i class="fab fa-instagram"></i> Ver trabajos en Instagram
-                    </a>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <h4 class="font-bold text-sm text-slate-800 mb-1">📅 ¿Cuándo se realiza el sorteo?</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            La fecha definitiva se anunciará a todos los compradores por WhatsApp/Redes Sociales con una anticipación mínima de una semana antes del sorteo en vivo.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Columna 2 -->
+                <div class="space-y-4">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <h4 class="font-bold text-sm text-slate-800 mb-1">💳 ¿Cómo abono mis números?</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Al hacer clic en reservar, te comunicará directo con el organizador donde podrás pagar por **Mercado Pago, transferencia bancaria (CBU/Alias)** o efectivo. Se te enviará el comprobante digital personalizado.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 border-2 border-brand-gold/40 bg-yellow-50/30 rounded-xl">
+                        <h4 class="font-bold text-sm text-brand-navy mb-1 flex items-center gap-1.5">
+                            🚗 Gastos de Gestoría y Transferencia ¡Bonificados!
+                        </h4>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            <strong>¡No gastás un peso extra!</strong> El organizador de la rifa se hace cargo del 100% de la transferencia, gestoría, honorarios de firmas y todo el trámite legal necesario para poner el auto a tu nombre. Se entrega con papeles totalmente al día y listo para disfrutar.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-black py-8">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-[#B0B0B0]">&copy; 2025 Mariñas Taller Automotriz. Todos los derechos reservados.</p>
-            <div class="flex justify-center items-center gap-4 mt-4">
-                <p class="text-zinc-500 text-sm">Zelaya, Buenos Aires</p>
-                <a href="https://wa.me/541171091304" target="_blank" class="text-lg text-green-500 hover:text-green-400 transition-colors"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://instagram.com/MarinasTallerAutomotriz" target="_blank" class="text-lg text-pink-500 hover:text-pink-400 transition-colors"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
+    <!-- NOTIFICACIONES INLINE (TOASTS) -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-brand-navy text-white text-sm py-3 px-5 rounded-xl shadow-2xl transition-all duration-300 transform translate-y-20 opacity-0 pointer-events-none flex items-center gap-2">
+        <span id="toast-message">Mensaje de prueba</span>
+    </div>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-brand-navy text-slate-400 py-6 text-center text-xs mt-12 border-t border-slate-800">
+        <p>© 2026 Rifa Ford Ka - Patente JSI 775. Todos los derechos reservados.</p>
+        <p class="mt-1 text-[10px]">Diseñado con un enfoque confiable y seguro para venta ágil.</p>
     </footer>
 
-    <!-- Botón Flotante de WhatsApp -->
-    <a href="https://wa.me/541171091304?text=Hola,%20vengo%20de%20la%20página%20web%20y%20quisiera%20hacer%20una%20consulta." target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300 z-50 cta-button">
-        <i class="fab fa-whatsapp text-3xl"></i>
-    </a>
+    <!-- LOGICA JAVASCRIPT -->
+    <script>
+        // 1. Configuración de datos del negocio/rifa
+        const WHATSAPP_CONTACT = "5491171091307"; // Número real del organizador
+        const TICKET_PRICE = 12000;
+        const TOTAL_NUMBERS = 1000;
 
+        // Estado del Carrito/Reserva
+        let selectedNumbers = [];
+        let currentSlide = 0;
+        let activeTabRange = 0; // 0 = 0-199, 1 = 200-399, etc.
+
+        // Todos los números empiezan 100% disponibles (vaciamos la simulación)
+        let soldNumbers = new Set();
+
+        // 2. Control del carrusel de fotos
+        const setSlide = (index) => {
+            currentSlide = index;
+            for (let i = 0; i < 3; i++) {
+                const slide = document.getElementById(`slide-${i}`);
+                const thumb = document.getElementById(`thumb-${i}`);
+                if (i === index) {
+                    slide.classList.remove('opacity-0');
+                    thumb.classList.add('border-brand-gold');
+                    thumb.classList.remove('border-transparent', 'opacity-60');
+                } else {
+                    slide.classList.add('opacity-0');
+                    thumb.classList.remove('border-brand-gold');
+                    thumb.classList.add('border-transparent', 'opacity-60');
+                }
+            }
+        };
+
+        // 3. Generación táctil de números por rangos de pestañas
+        const ranges = [
+            { label: "000 - 199", start: 0, end: 199 },
+            { label: "200 - 399", start: 200, end: 399 },
+            { label: "400 - 550", start: 400, end: 550 },
+            { label: "551 - 749", start: 551, end: 749 },
+            { label: "750 - 999", start: 750, end: 999 }
+        ];
+
+        const initTabs = () => {
+            const container = document.getElementById('tabs-container');
+            container.innerHTML = '';
+            ranges.forEach((range, idx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `flex-none text-xs font-bold py-2 px-4 rounded-lg border transition-all duration-200 ${
+                    activeTabRange === idx 
+                    ? 'bg-brand-blue text-white border-brand-blue shadow-sm' 
+                    : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                }`;
+                btn.textContent = range.label;
+                btn.onclick = () => {
+                    activeTabRange = idx;
+                    initTabs();
+                    renderGrid();
+                };
+                container.appendChild(btn);
+            });
+        };
+
+        const renderGrid = (filterTerm = '') => {
+            const grid = document.getElementById('numbers-grid');
+            grid.innerHTML = '';
+
+            const range = ranges[activeTabRange];
+            let start = range.start;
+            let end = range.end;
+
+            // Si hay un término de búsqueda, saltamos la paginación y renderizamos los resultados que coincidan
+            if (filterTerm.trim() !== '') {
+                for (let i = 0; i < TOTAL_NUMBERS; i++) {
+                    const numString = String(i).padStart(3, '0');
+                    if (numString.includes(filterTerm)) {
+                        createNumberButton(i, grid);
+                    }
+                }
+                return;
+            }
+
+            // Renderizado normal por pestañas
+            for (let i = start; i <= end; i++) {
+                createNumberButton(i, grid);
+            }
+        };
+
+        const createNumberButton = (num, container) => {
+            const isSold = soldNumbers.has(num);
+            const isSelected = selectedNumbers.includes(num);
+            const numString = String(num).padStart(3, '0');
+
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = `aspect-square flex items-center justify-center font-bold text-xs rounded-lg border transition-all duration-150 ${
+                isSold 
+                ? 'bg-slate-100 text-slate-300 border-slate-100 cursor-not-allowed opacity-60' 
+                : isSelected
+                ? 'bg-brand-gold text-brand-navy border-brand-gold scale-95 ring-2 ring-brand-navy shadow-inner'
+                : 'bg-white text-slate-700 border-slate-200 hover:border-brand-blue hover:text-brand-blue hover:bg-slate-50'
+            }`;
+            
+            // Si el número es la patente del auto (775), le agregamos un destello visual
+            if (num === 775 && !isSold && !isSelected) {
+                btn.classList.add('animate-pulse', 'border-brand-gold', 'bg-yellow-50');
+            }
+
+            btn.textContent = numString;
+            btn.disabled = isSold;
+            btn.onclick = () => toggleNumber(num);
+            container.appendChild(btn);
+        };
+
+        // 4. Lógica de selección y deselección
+        const toggleNumber = (num) => {
+            if (soldNumbers.has(num)) return;
+
+            const index = selectedNumbers.indexOf(num);
+            if (index > -1) {
+                selectedNumbers.splice(index, 1);
+            } else {
+                selectedNumbers.push(num);
+            }
+
+            updateUI();
+        };
+
+        // Selección automática al azar
+        const selectRandom = (quantity) => {
+            let count = 0;
+            let attempts = 0;
+            const maxAttempts = 2000; // Evitar loop infinito si casi no hay números libres
+
+            while (count < quantity && attempts < maxAttempts) {
+                attempts++;
+                let num = Math.floor(Math.random() * TOTAL_NUMBERS);
+                if (!soldNumbers.has(num) && !selectedNumbers.includes(num)) {
+                    selectedNumbers.push(num);
+                    count++;
+                }
+            }
+
+            if (count > 0) {
+                showToast(`Se agregaron ${count} números seleccionados al azar.`);
+                // Cambiar de pestaña al primer número de los seleccionados para mostrarlo
+                const firstNew = selectedNumbers[selectedNumbers.length - 1];
+                const foundIdx = ranges.findIndex(r => firstNew >= r.start && firstNew <= r.end);
+                if (foundIdx !== -1) {
+                    activeTabRange = foundIdx;
+                    initTabs();
+                }
+                updateUI();
+            } else {
+                showToast("No se encontraron números disponibles suficientes.");
+            }
+        };
+
+        // 5. Buscador Dinámico
+        const filterNumbers = () => {
+            const input = document.getElementById('search-input');
+            const term = input.value.trim();
+            renderGrid(term);
+        };
+
+        // 6. Actualización de Interfaz (Resumen)
+        const updateUI = () => {
+            renderGrid(document.getElementById('search-input').value);
+
+            // Lista lateral
+            const listContainer = document.getElementById('selected-list');
+            listContainer.innerHTML = '';
+
+            if (selectedNumbers.length === 0) {
+                listContainer.innerHTML = '<span class="text-xs text-slate-400 italic">No seleccionaste ningún número aún.</span>';
+            } else {
+                selectedNumbers.sort((a, b) => a - b).forEach(num => {
+                    const badge = document.createElement('span');
+                    badge.className = 'inline-flex items-center gap-1 py-1 px-2.5 rounded-md text-xs font-bold bg-brand-gold/10 text-brand-navy border border-brand-gold/30';
+                    badge.innerHTML = `
+                        ${String(num).padStart(3, '0')}
+                        <button onclick="toggleNumber(${num})" class="text-brand-navy hover:text-red-500 font-black ml-1">×</button>
+                    `;
+                    listContainer.appendChild(badge);
+                });
+            }
+
+            // Resúmenes numéricos
+            const totalCost = selectedNumbers.length * TICKET_PRICE;
+            document.getElementById('resumen-cantidad').textContent = selectedNumbers.length;
+            document.getElementById('resumen-total').textContent = `$${totalCost.toLocaleString('es-AR')}`;
+        };
+
+        // 7. Simulación de WhatsApp y Envío
+        const requestReservation = () => {
+            const name = document.getElementById('buyer-name').value.trim();
+            const phone = document.getElementById('buyer-phone').value.trim();
+
+            if (selectedNumbers.length === 0) {
+                showToast("⚠️ Por favor, selecciona al menos un número del tablero.");
+                return;
+            }
+            if (!name) {
+                showToast("⚠️ Por favor, ingresá tu Nombre Completo.");
+                return;
+            }
+            if (!phone) {
+                showToast("⚠️ Por favor, ingresá tu teléfono de contacto.");
+                return;
+            }
+
+            // Formatear mensaje para WhatsApp
+            const numStrings = selectedNumbers.map(n => String(n).padStart(3, '0')).join(', ');
+            const total = (selectedNumbers.length * TICKET_PRICE).toLocaleString('es-AR');
+            
+            const message = `Hola! Quiero reservar los siguientes números para la rifa del Ford Ka (Patente JSI 775):\n\n` +
+                            `🎟️ Números: *[ ${numStrings} ]*\n` +
+                            `👤 Comprador: *${name}*\n` +
+                            `📞 Celular: *${phone}*\n` +
+                            `💰 Total a abonar: *$${total}*\n\n` +
+                            `Por favor, indicame el Alias de pago para transferir y enviarte el comprobante.`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const finalUrl = `https://wa.me/${WHATSAPP_CONTACT}?text=${encodedMessage}`;
+
+            // Abrir WhatsApp en pestaña nueva
+            window.open(finalUrl, '_blank');
+        };
+
+        // 8. Mensajes flotantes (Toast)
+        const showToast = (message) => {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = message;
+            
+            toast.classList.remove('opacity-0', 'translate-y-20', 'pointer-events-none');
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-20', 'pointer-events-none');
+            }, 3500);
+        };
+
+        // Inicialización al cargar la ventana
+        window.onload = function () {
+            initTabs();
+            renderGrid();
+        };
+    </script>
 </body>
 </html>
