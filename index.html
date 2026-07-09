@@ -1,678 +1,405 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Método Marinas | Volver a Habitar tu Cuerpo en Calma</title>
-    <!-- Tailwind CSS -->
+    <title>Método Mariñas - Reiniciá tu Mente</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            scroll-behavior: smooth;
+        }
+
+        .text-naranja { color: #FF6B35; }
+        .bg-naranja { background-color: #FF6B35; }
+        .border-naranja { border-color: #FF6B35; }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: #FF6B35;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #FF6B35;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn-animate {
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-animate:hover {
+            transform: scale(1.05);
+        }
+
+        /* Máscara inteligente para recortar los bordes negros y la interfaz de iOS de las capturas de pantalla */
+        .crop-screenshot {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .crop-screenshot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Hacemos un zoom del 125% para eliminar barras de scroll, horas, baterías de iPhone */
+            transform: scale(1.25);
+            /* Centramos el encuadre ligeramente hacia arriba para priorizar el rostro de Joni */
+            transform-origin: center 42%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 bg-[#121212]/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-xl font-extrabold tracking-tighter italic text-naranja">MÉTODO MARIÑAS</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="nav-link text-sm font-medium">Inicio</a>
+                    <a href="#empatia" class="nav-link text-sm font-medium">¿Te pasa esto?</a>
+                    <a href="#metodo" class="nav-link text-sm font-medium">El Método</a>
+                    <a href="#modalidades" class="nav-link text-sm font-medium">Modalidades</a>
+                </div>
+                <div>
+                    <a href="https://wa.me/tu-numero" class="bg-naranja text-white px-4 py-2 rounded-full text-sm font-bold btn-animate">¡Quiero empezar!</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <section id="inicio" class="relative pt-32 pb-20 overflow-hidden min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-left">
+                    <span class="text-naranja font-bold tracking-widest uppercase text-sm mb-4 block">MÁS QUE ENTRENAR TU CUERPO, REINICIÁ TU MENTE</span>
+                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+                        Usá la fuerza como un botón de <span class="text-naranja">reset</span> para ganarle a la ansiedad.
+                    </h1>
+                    <p class="text-lg text-gray-400 mb-8 max-w-lg">
+                        Un método diseñado para profesionales, programadores y emprendedores cansados de vivir sin energía y con la cabeza a mil. Recuperá tu centro con el Método Mariñas.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://wa.me/tu-numero" class="bg-naranja text-center text-white px-8 py-4 rounded-xl font-bold text-lg btn-animate shadow-lg shadow-orange-900/20">
+                            👉 Entrevista gratuita por WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <!-- Retrato amigable de frente con el micrófono para transmitir enorme confianza -->
+                <div class="relative">
+                    <div class="aspect-square rounded-3xl bg-gradient-to-tr from-naranja/20 to-transparent absolute -inset-4 blur-2xl"></div>
+                    <div class="relative bg-zinc-800 rounded-3xl overflow-hidden border border-white/10 aspect-[4/5] flex items-center justify-center">
+                        <img src="WhatsApp Image 2026-07-09 at 12.21.45 PM.jpeg" alt="Jonathan Mariñas - Método Mariñas" class="w-full h-full object-cover object-center" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden absolute inset-0 flex flex-col items-center justify-center p-8 text-center text-gray-500">
+                            <span class="text-4xl mb-4">🏋️‍♂️</span>
+                            <span class="text-sm font-semibold text-white">Jonathan Mariñas</span>
+                            <span class="text-xs text-gray-400 mt-2">[Frente Close-up]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. SECCIÓN DE EMPATÍA -->
+    <section id="empatia" class="py-24 bg-zinc-900/50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">¿Sentís que la rutina te está pasando por arriba?</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">No es falta de voluntad, es falta de un método que entienda que tu cerebro está agotado.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="text-3xl mb-4">⏰</div>
+                    <h3 class="text-xl font-bold mb-2">Despertador enemigo</h3>
+                    <p class="text-gray-400">Te levantás cansado antes de empezar, arrastrando el cuerpo del sueño al escritorio.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="text-3xl mb-4">🤯</div>
+                    <h3 class="text-xl font-bold mb-2">Cabeza a mil</h3>
+                    <p class="text-gray-400">Ruido mental constante y una fatiga que no te deja decidir con claridad las tareas más simples.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="text-3xl mb-4">📉</div>
+                    <h3 class="text-xl font-bold mb-2">El bucle del lunes</h3>
+                    <p class="text-gray-400">Pagás el gimnasio, vas una semana con culpa y terminás abandonando por pura falta de energía real.</p>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-zinc-800 p-8 rounded-3xl border border-white/5">
+                    <h4 class="text-center font-bold text-xl mb-8">El impacto en tu cuerpo (Estrés vs. Vitalidad)</h4>
+                    <div class="chart-container">
+                        <canvas id="stressChart"></canvas>
+                    </div>
+                    <p class="text-sm text-center text-gray-500 mt-6 italic">Visualización del impacto del entrenamiento de fuerza regulado vs. el sedentarismo estresante.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. LA SOLUCIÓN (MÉTODO) -->
+    <section id="metodo" class="py-24">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
+                        El entrenamiento de fuerza como <span class="text-naranja">terapia neural</span>.
+                    </h2>
+                    <p class="text-gray-300 text-lg mb-8">
+                        No buscamos abdominales vacíos para la foto. Buscamos drenar el cortisol, liberar endorfinas y devolverle a tu cerebro la claridad y el enfoque que el estrés te quita.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <button onclick="updatePillar(0)" class="pillar-btn w-full text-left p-4 rounded-xl border border-white/10 hover:bg-white/5 transition-all flex justify-between items-center bg-white/5 border-naranja">
+                            <span class="font-bold text-lg">Pilar 1: Fuerza Física Adaptada</span>
+                            <span class="text-naranja">→</span>
+                        </button>
+                        <button onclick="updatePillar(1)" class="pillar-btn w-full text-left p-4 rounded-xl border border-white/10 hover:bg-white/5 transition-all flex justify-between items-center">
+                            <span class="font-bold text-lg">Pilar 2: Psicología del Hábito</span>
+                            <span class="text-naranja">→</span>
+                        </button>
+                        <button onclick="updatePillar(2)" class="pillar-btn w-full text-left p-4 rounded-xl border border-white/10 hover:bg-white/5 transition-all flex justify-between items-center">
+                            <span class="font-bold text-lg">Pilar 3: Seguimiento Humano</span>
+                            <span class="text-naranja">→</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="pillar-content" class="bg-zinc-900 border border-white/10 p-10 rounded-3xl min-h-[400px] flex flex-col justify-center">
+                    <div class="text-naranja text-5xl mb-6" id="pillar-icon">🏋️‍♂️</div>
+                    <h3 class="text-2xl font-bold mb-4" id="pillar-title">Fuerza Física Adaptada</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed" id="pillar-text">
+                        Diseñamos entrenamientos para que termines con más energía de la que tenías al empezar. Cuidamos tu postura de oficina y reforzamos tus zonas débiles como la columna y los hombros.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. MODALIDADES -->
+    <section id="modalidades" class="py-24 bg-zinc-900/50">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16">Elegí cómo querés transformar tu día</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="glass-card p-10 rounded-3xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 bg-naranja text-white text-xs font-bold uppercase rounded-bl-xl">Local</div>
+                    <h3 class="text-2xl font-bold mb-4">Presencial / Híbrido</h3>
+                    <ul class="text-left space-y-4 text-gray-400 mb-8">
+                        <li class="flex items-start"><span class="text-naranja mr-2">✓</span> Técnica corregida en tiempo real de forma segura.</li>
+                        <li class="flex items-start"><span class="text-naranja mr-2">✓</span> Clases cuidadas y personalizadas en nuestra zona.</li>
+                        <li class="flex items-start"><span class="text-naranja mr-2">✓</span> Comunidad empática que está en la misma sintonía.</li>
+                    </ul>
+                    <a href="https://wa.me/tu-numero" class="block w-full py-4 border border-naranja text-naranja font-bold rounded-xl group-hover:bg-naranja group-hover:text-white transition-all">Consultar horarios</a>
+                </div>
+
+                <div class="glass-card p-10 rounded-3xl relative overflow-hidden group border-naranja bg-naranja/5">
+                    <div class="absolute top-0 right-0 p-4 bg-white text-black text-xs font-bold uppercase rounded-bl-xl">Global</div>
+                    <h3 class="text-2xl font-bold mb-4">100% Online</h3>
+                    <ul class="text-left space-y-4 text-gray-400 mb-8">
+                        <li class="flex items-start"><span class="text-naranja mr-2">✓</span> Planificación en tu celular para tus tiempos libres.</li>
+                        <li class="flex items-start"><span class="text-naranja mr-2">✓</span> Control de técnica quirúrgico mediante videos.</li>
+                        <li class="flex items-start"><span class="text-naranja mr-2">✓</span> Seguimiento diario uno a uno por WhatsApp.</li>
+                    </ul>
+                    <a href="https://wa.me/tu-numero" class="block w-full py-4 bg-naranja text-white font-bold rounded-xl shadow-lg shadow-orange-900/30">Aplicar al programa</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SOBRE MÍ -->
+    <section class="py-24">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <!-- Mostramos a Joni como un docente/coach que dicta cursos de salud integral -->
+                <div class="flex gap-4 flex-shrink-0 w-full md:w-auto justify-center">
+                    <!-- Foto de la charla principal, recortada elegantemente -->
+                    <div class="crop-screenshot relative w-40 h-56 md:w-48 md:h-72 rounded-2xl border-2 border-naranja bg-zinc-800 shadow-2xl">
+                        <img src="WhatsApp Image 2026-07-09 at 12.30.56 PM (1).jpeg" alt="Jonathan Mariñas dictando clase de Salud Integral" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden absolute inset-0 flex items-center justify-center text-xs text-gray-500 text-center p-4">[Jonathan dando clase]</div>
+                    </div>
+                    <!-- Foto de la charla secundaria, recortada con ángulo desfasado para dinamismo visual -->
+                    <div class="crop-screenshot relative w-40 h-56 md:w-48 md:h-72 rounded-2xl border border-white/10 bg-zinc-800 shadow-2xl mt-8">
+                        <img src="WhatsApp Image 2026-07-09 at 12.30.56 PM.jpeg" alt="Jonathan Mariñas explicando el Método" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden absolute inset-0 flex items-center justify-center text-xs text-gray-500 text-center p-4">[Jonathan explicando]</div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">Hola, soy Joni Mariñas. Y te entiendo perfectamente.</h2>
+                    <p class="text-gray-400 text-lg mb-6 leading-relaxed">
+                        Como Profe de Educación Física y apasionado de la psicología conductual, me cansé de ver cómo el fitness tradicional aleja a la gente común con exigencias ridículas y gritos de sargento. 
+                    </p>
+                    <p class="text-gray-400 text-lg mb-6 leading-relaxed">
+                        Creo firmemente que el movimiento es una medicina indispensable para ordenar el descontrol diario de nuestras mentes. Mi misión es ayudarte a construir un hábito saludable, a recuperar tu centro y a crear una disciplina de la cual te sientas profundamente orgulloso.
+                    </p>
+                    <p class="font-bold text-naranja text-xl">Sin juzgar, sin poses y con muchísima empatía.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CIERRE / CTA -->
+    <section class="py-24 bg-gradient-to-b from-transparent to-naranja/10">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-extrabold mb-6">¿Te sumás a recuperar tu energía?</h2>
+            <p class="text-gray-300 text-lg mb-10">
+                Para garantizar que cada planificación sea 100% a medida y con seguimiento humano real por WhatsApp, **los cupos mensuales son estrictamente limitados**. No somos una fábrica de rutinas genéricas automatizadas.
+            </p>
+            <div class="glass-card p-8 rounded-3xl border-naranja/50 inline-block w-full">
+                <p class="text-xl mb-8 font-semibold">El primer paso es charlar y conocernos. No te cuesta nada.</p>
+                <a href="https://wa.me/tu-numero" class="bg-naranja text-white px-10 py-5 rounded-2xl font-extrabold text-xl btn-animate inline-block shadow-2xl shadow-orange-600/40">
+                    📲 Coordinar mi entrevista gratuita
+                </a>
+                <p class="mt-6 text-sm text-gray-500 italic">
+                    Hacés clic, me escribís directamente a mi WhatsApp y coordinamos un día y horario para charlar un rato sobre tu situación actual.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 text-center text-gray-600 text-sm">
+        <p>&copy; 2026 Método Mariñas - Entrenamiento con Propósito.</p>
+    </footer>
+
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            bg: '#faf6f0',       // Arena/Lino Cálido (Fondo principal)
-                            dark: '#241e17',     // Café Espresso Profundo (Texto/Elegancia)
-                            accent: '#c27a5d',   // Terracota Suave (Botones clave/Atracción)
-                            accentHover: '#ab6549',
-                            softGreen: '#7d907e', // Verde Oliva Muted (Calma/Naturaleza)
-                            cardBg: '#ffffff',    // Blanco Puro para tarjetas
-                            softSand: '#f3ede4'   // Sand de contraste suave
-                        }
+        // Lógica del Gráfico de Estrés vs Método
+        const ctx = document.getElementById('stressChart').getContext('2d');
+        const stressChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Nivel de Estrés', 'Energía Mental', 'Disciplina'],
+                datasets: [
+                    {
+                        label: 'Sin el Método',
+                        data: [90, 20, 15],
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        borderColor: 'rgba(255, 255, 255, 0.2)',
+                        borderWidth: 1,
+                        borderRadius: 8
                     },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                    {
+                        label: 'Con Método Mariñas',
+                        data: [35, 85, 90],
+                        backgroundColor: '#FF6B35',
+                        borderColor: '#FF6B35',
+                        borderWidth: 1,
+                        borderRadius: 8
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { color: '#ffffff', font: { size: 12 } }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { color: '#666' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#fff' }
                     }
                 }
             }
-        }
-    </script>
-    <!-- Google Fonts & Lucide Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        .font-serif-aesthetic {
-            font-family: 'Playfair Display', serif;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #faf6f0;
-            color: #241e17;
-        }
-        /* Resguardo para que los iconos no se distorsionen en celulares antes o después de cargar */
-        [data-lucide] {
-            display: inline-block;
-            stroke-width: 2px;
-            flex-shrink: 0;
-        }
-        .w-4 { width: 1rem !important; height: 1rem !important; }
-        .w-5 { width: 1.25rem !important; height: 1.25rem !important; }
-        .w-6 { width: 1.5rem !important; height: 1.5rem !important; }
-        .w-7 { width: 1.75rem !important; height: 1.75rem !important; }
-        .w-10 { width: 2.5rem !important; height: 2.5rem !important; }
-        .w-14 { width: 3.5rem !important; height: 3.5rem !important; }
-    </style>
-</head>
-<body class="antialiased min-h-screen flex flex-col selection:bg-brand-accent/20 selection:text-brand-dark">
+        });
 
-    <!-- Header / Navbar Minimalista Adaptativo -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-[#faf6f0]/90 border-b border-brand-dark/5">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-            <div class="flex items-center space-x-2 sm:space-x-3">
-                <span class="w-8 h-8 rounded-full bg-brand-softGreen/10 flex items-center justify-center text-brand-softGreen shrink-0">
-                    <i data-lucide="leaf" class="w-5 h-5"></i>
-                </span>
-                <span class="font-serif-aesthetic italic font-semibold text-xl sm:text-2xl tracking-tight text-brand-dark">Método Marinas</span>
-            </div>
-            <nav class="hidden md:flex items-center space-x-10 text-sm font-medium tracking-wide text-brand-dark/70">
-                <a href="#filosofia" class="hover:text-brand-dark transition">El Sentido</a>
-                <a href="#pilares" class="hover:text-brand-dark transition">El Método</a>
-                <a href="#proceso" class="hover:text-brand-dark transition">El Proceso</a>
-                <a href="#perfil" class="hover:text-brand-dark transition">Tu Mapa de Tensión</a>
-            </nav>
-            <div class="flex items-center">
-                <!-- Botón de escritorio -->
-                <a href="#perfil" class="hidden sm:inline-flex bg-brand-dark text-[#faf6f0] px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-brand-accent transition shadow-sm">
-                    Crear mi Mapa de Tensión
-                </a>
-                <!-- Botón elegante y compacto exclusivo para celulares -->
-                <a href="#perfil" class="sm:hidden bg-brand-accent text-[#faf6f0] p-3 rounded-full hover:bg-brand-accentHover transition shadow-md flex items-center justify-center shrink-0">
-                    <i data-lucide="sparkles" class="w-4 h-4 text-[#faf6f0]"></i>
-                </a>
-            </div>
-        </div>
-    </header>
+        // Lógica de los Pilares
+        const pillars = [
+            {
+                icon: '🏋️‍♂️',
+                title: 'Fuerza Física Adaptada',
+                text: 'Diseñamos entrenamientos para que termines con más energía de la que tenías al empezar. No te vas a arrastrar por el piso; vas a fortalecer tu postura de oficina y blindar tus zonas débiles como espalda y cuello.'
+            },
+            {
+                icon: '🧠',
+                title: 'Psicología del Hábito',
+                text: 'La motivación es una mentira. Trabajamos en micro-hábitos para hackear la procrastinación. Te enseñamos a automatizar el movimiento para que entrenar sea tan natural en tu día como lavarte los dientes.'
+            },
+            {
+                icon: '📱',
+                title: 'Estructura y Seguimiento',
+                text: 'Tenés contacto directo conmigo por WhatsApp. No sos un número en una app fría. Estoy ahí para ajustar tu plan si tuviste una semana difícil y darte el empujón cuando la rutina se pone pesada.'
+            }
+        ];
 
-    <!-- Hero Section: Sofisticado, espacioso y aspiracional -->
-    <section class="relative py-12 sm:py-20 md:py-32 overflow-hidden">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            
-            <!-- Left Text Content -->
-            <div class="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
-                <div class="inline-flex items-center space-x-2 bg-brand-softGreen/10 text-brand-softGreen px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-wider uppercase">
-                    <span>Acompañamiento Corporal Integral</span>
-                </div>
+        function updatePillar(index) {
+            const content = document.getElementById('pillar-content');
+            const icon = document.getElementById('pillar-icon');
+            const title = document.getElementById('pillar-title');
+            const text = document.getElementById('pillar-text');
+            const buttons = document.querySelectorAll('.pillar-btn');
+
+            // Animación simple de salida
+            content.style.opacity = '0';
+            content.style.transform = 'translateY(10px)';
+
+            setTimeout(() => {
+                icon.innerText = pillars[index].icon;
+                title.innerText = pillars[index].title;
+                text.innerText = pillars[index].text;
                 
-                <h1 class="font-serif-aesthetic text-3xl sm:text-5xl md:text-6xl font-light text-brand-dark leading-tight">
-                    Recuperá la <span class="italic font-normal text-brand-accent">ligereza</span> en tu cuerpo y el espacio en tu mente.
-                </h1>
-                
-                <p class="text-sm sm:text-base md:text-lg text-brand-dark/70 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                    Tu cuerpo es el reflejo de cómo vivís tus días. No necesitás rutinas pesadas que te exijan más de lo que podés dar hoy. Es momento de usar el movimiento inteligente y la respiración para liberar tensiones físicas profundas, calmar el sistema nervioso y volver a sentirte bien con vos.
-                </p>
+                content.style.opacity = '1';
+                content.style.transform = 'translateY(0)';
+            }, 200);
 
-                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
-                    <a href="#perfil" class="w-full sm:w-auto bg-brand-accent text-[#faf6f0] px-6 py-3.5 sm:px-8 sm:py-4 rounded-full font-semibold text-xs sm:text-sm uppercase tracking-wider hover:bg-brand-accentHover transition shadow-lg hover:shadow-brand-accent/20 flex items-center justify-center space-x-2 shrink-0">
-                        <span>Iniciar Mapa de Tensión</span>
-                        <i data-lucide="sparkles" class="w-4 h-4 shrink-0"></i>
-                    </a>
-                    <a href="#filosofia" class="w-full sm:w-auto border border-brand-dark/20 text-brand-dark/80 hover:border-brand-dark px-6 py-3.5 sm:px-8 sm:py-4 rounded-full font-semibold text-xs sm:text-sm uppercase tracking-wider transition flex items-center justify-center space-x-2 shrink-0">
-                        <span>Conocer mi filosofía</span>
-                    </a>
-                </div>
-
-                <!-- Subtle Trust Info -->
-                <p class="text-[10px] sm:text-xs italic text-brand-dark/50 pt-2">Un enfoque sin prisas, sin culpa y 100% diseñado para tu estado físico actual.</p>
-            </div>
-
-            <!-- Right Visual Interactive Area (Tension Zone Selector) -->
-            <div class="lg:col-span-5 relative">
-                <div class="bg-white p-6 sm:p-10 rounded-3xl shadow-xl shadow-brand-dark/5 border border-brand-softSand space-y-6">
-                    <h3 class="font-serif-aesthetic text-xl sm:text-2xl text-brand-dark font-semibold">¿Dónde se acumula tu día hoy?</h3>
-                    <p class="text-xs text-brand-dark/60 leading-relaxed">
-                        El cuerpo expresa lo que la mente calla. Elegí la zona donde sentís mayor cansancio o rigidez para ver cómo la desarmamos de raíz:
-                    </p>
-                    
-                    <div class="space-y-3" id="symptoms-container">
-                        <button onclick="selectSymptom('pecho')" id="sym-pecho" class="w-full p-4 text-left rounded-2xl border border-brand-softSand hover:border-brand-accent bg-brand-bg/40 hover:bg-white transition flex justify-between items-center group">
-                            <div class="pr-3">
-                                <h4 class="font-semibold text-brand-dark text-sm">Respiración corta o pecho cerrado</h4>
-                                <p class="text-[11px] sm:text-xs text-brand-dark/60 mt-0.5">La sensación física de no poder meter aire profundo en los pulmones.</p>
-                            </div>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-brand-dark/30 group-hover:text-brand-accent transition shrink-0 ml-auto"></i>
-                        </button>
-                        
-                        <button onclick="selectSymptom('hombros')" id="sym-hombros" class="w-full p-4 text-left rounded-2xl border border-brand-softSand hover:border-brand-accent bg-brand-bg/40 hover:bg-white transition flex justify-between items-center group">
-                            <div class="pr-3">
-                                <h4 class="font-semibold text-brand-dark text-sm">Cuello cargado o mandíbula tensa</h4>
-                                <p class="text-[11px] sm:text-xs text-brand-dark/60 mt-0.5">Sentir que sostenés el peso de todas las responsabilidades en la espalda alta.</p>
-                            </div>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-brand-dark/30 group-hover:text-brand-accent transition shrink-0 ml-auto"></i>
-                        </button>
-
-                        <button onclick="selectSymptom('lumbar')" id="sym-lumbar" class="w-full p-4 text-left rounded-2xl border border-brand-softSand hover:border-brand-accent bg-brand-bg/40 hover:bg-white transition flex justify-between items-center group">
-                            <div class="pr-3">
-                                <h4 class="font-semibold text-brand-dark text-sm">Cadera bloqueada o rigidez lumbar</h4>
-                                <p class="text-[11px] sm:text-xs text-brand-dark/60 mt-0.5">La zona lumbar donde guardamos la tensión de estar sentados u alertas.</p>
-                            </div>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-brand-dark/30 group-hover:text-brand-accent transition shrink-0 ml-auto"></i>
-                        </button>
-                    </div>
-
-                    <!-- Somatic response -->
-                    <div id="symptom-response" class="hidden p-5 rounded-2xl bg-brand-bg border border-brand-softSand text-sm space-y-2">
-                        <h5 class="font-serif-aesthetic font-bold text-brand-accent italic text-base flex items-center gap-1.5">
-                            La respuesta de tu cuerpo:
-                        </h5>
-                        <p id="symptom-text" class="text-brand-dark/80 text-xs leading-relaxed"></p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Sección "El Sentido" / Empatía orgánica -->
-    <section id="filosofia" class="py-16 sm:py-24 bg-white border-y border-brand-softSand/60">
-        <div class="max-w-4xl mx-auto px-6 space-y-12">
-            <div class="text-center space-y-4">
-                <span class="text-brand-accent font-semibold text-xs uppercase tracking-wider">Un cambio de perspectiva</span>
-                <h2 class="font-serif-aesthetic text-2xl sm:text-4xl text-brand-dark font-light">Tu cuerpo no está roto. Solo está <span class="italic text-brand-softGreen">sosteniendo demasiado</span>.</h2>
-                <p class="text-brand-dark/70 max-w-2xl mx-auto text-xs sm:text-sm leading-relaxed">
-                    Vivimos intentando resolver todo pensando desde la cabeza. Pero el cansancio, las contracturas musculares y la falta de ganas no son fallas en tu disciplina; son señales de tu cuerpo pidiendo un momento de seguridad y descanso. Cuando liberamos el cuerpo, la mente lo acompaña de forma natural.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 pt-6">
-                <div class="p-6 sm:p-8 rounded-3xl bg-brand-bg/50 space-y-4 border border-brand-softSand/30">
-                    <div class="w-10 h-10 bg-brand-softGreen/10 text-brand-softGreen rounded-full flex items-center justify-center shrink-0">
-                        <i data-lucide="wind" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="font-serif-aesthetic text-lg font-semibold text-brand-dark">Fisiología del Descanso</h3>
-                    <p class="text-xs text-brand-dark/70 leading-relaxed">Aprendemos a regular las señales de tu día que alteran tu descanso para que vuelvas a experimentar un sueño realmente reparador.</p>
-                </div>
-                <div class="p-6 sm:p-8 rounded-3xl bg-brand-bg/50 space-y-4 border border-brand-softSand/30">
-                    <div class="w-10 h-10 bg-brand-softGreen/10 text-brand-softGreen rounded-full flex items-center justify-center shrink-0">
-                        <i data-lucide="smile" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="font-serif-aesthetic text-lg font-semibold text-brand-dark">Movimiento Amable</h3>
-                    <p class="text-xs text-brand-dark/70 leading-relaxed">Sin rutinas extenuantes. Buscamos dosis pequeñas de movement fluido que despierten tu vitalidad sin dejarte sin energía.</p>
-                </div>
-                <div class="p-6 sm:p-8 rounded-3xl bg-brand-bg/50 space-y-4 border border-brand-softSand/30">
-                    <div class="w-10 h-10 bg-brand-softGreen/10 text-brand-softGreen rounded-full flex items-center justify-center shrink-0">
-                        <i data-lucide="compass" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="font-serif-aesthetic text-lg font-semibold text-brand-dark">Espacio para Vos</h3>
-                    <p class="text-xs text-brand-dark/70 leading-relaxed">Creamos un puente entre lo que te pasa en el día y cómo te movés. Un acompañamiento diario que te entiende, te apoya y no te juzga.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pilares del Método Marinas -->
-    <section id="pilares" class="py-16 sm:py-24 bg-brand-bg">
-        <div class="max-w-6xl mx-auto px-6 space-y-12 sm:space-y-16">
-            <div class="text-center max-w-2xl mx-auto space-y-4">
-                <span class="text-brand-accent font-semibold text-xs uppercase tracking-wider">La Estructura</span>
-                <h2 class="font-serif-aesthetic text-2xl sm:text-4xl text-brand-dark font-light">¿Cómo lo hacemos posible?</h2>
-                <p class="text-xs sm:text-sm text-brand-dark/70">La fusión perfecta entre la ciencia del movimiento y el respeto absoluto por tus propios tiempos.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                <!-- Pilar 1 -->
-                <div class="space-y-4 bg-white p-6 sm:p-8 rounded-3xl border border-brand-softSand/50 shadow-sm">
-                    <span class="font-serif-aesthetic italic text-2xl sm:text-3xl text-brand-accent">01.</span>
-                    <h3 class="font-serif-aesthetic text-lg sm:text-xl font-semibold text-brand-dark">Relajación del Nervio Vago</h3>
-                    <p class="text-brand-dark/70 text-xs leading-relaxed">
-                        Utilizamos técnicas sencillas de respiración guiada, masajes corporales específicos en zonas de acumulación de tensión y ejercicios de movilidad consciente. Esto le demuestra a tu cuerpo de forma física que está a salvo, calmando el ruido mental en pocos minutos.
-                    </p>
-                </div>
-                <!-- Pilar 2 -->
-                <div class="space-y-4 bg-white p-6 sm:p-8 rounded-3xl border border-brand-softSand/50 shadow-sm">
-                    <span class="font-serif-aesthetic italic text-2xl sm:text-3xl text-brand-accent">02.</span>
-                    <h3 class="font-serif-aesthetic text-lg sm:text-xl font-semibold text-brand-dark">Tonificación Consciente</h3>
-                    <p class="text-brand-dark/70 text-xs leading-relaxed">
-                        Ganar fuerza no requiere sufrir en un gimnasio lleno de espejos y música alta. Diseñamos estímulos cortos de fuerza lenta y control muscular en tu casa, permitiendo que recuperes estabilidad e integridad física sin gastar tus reservas de energía.
-                    </p>
-                </div>
-                <!-- Pilar 3 -->
-                <div class="space-y-4 bg-white p-6 sm:p-8 rounded-3xl border border-brand-softSand/50 shadow-sm">
-                    <span class="font-serif-aesthetic italic text-2xl sm:text-3xl text-brand-accent">03.</span>
-                    <h3 class="font-serif-aesthetic text-lg sm:text-xl font-semibold text-brand-dark">Soporte y Flexibilidad Diaria</h3>
-                    <p class="text-brand-dark/70 text-xs leading-relaxed">
-                        A través de WhatsApp, mantenemos un canal de comunicación directo todos los días. No hay un plan rígido grabado en piedra; si un día te despertás cansado o con la cabeza abrumada, reajustamos el plan del día en un mensaje para darte alivio real.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- El Proceso de 8 Semanas -->
-    <section id="proceso" class="py-16 sm:py-24 bg-white">
-        <div class="max-w-5xl mx-auto px-6 space-y-12 sm:space-y-16">
-            <div class="text-center max-w-2xl mx-auto space-y-4">
-                <span class="text-brand-accent font-semibold text-xs uppercase tracking-wider">El Camino</span>
-                <h2 class="font-serif-aesthetic text-2xl sm:text-4xl text-brand-dark font-light">Las 8 Semanas de Transición</h2>
-                <p class="text-xs sm:text-sm text-brand-dark/70">Un proceso diseñado para desarmar el cansancio corporal y recuperar tu vitalidad natural.</p>
-            </div>
-
-            <!-- Timeline Minimalista -->
-            <div class="relative border-l border-brand-accent/20 ml-2 sm:ml-12 md:ml-32 space-y-10 sm:space-y-12">
-                <!-- Fase 1 -->
-                <div class="relative pl-6 sm:pl-12">
-                    <span class="absolute -left-1.5 top-2 bg-brand-accent w-3 h-3 rounded-full border border-white"></span>
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-2 sm:gap-4">
-                        <div class="md:col-span-3">
-                            <span class="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-brand-accent">Semanas 1 & 2</span>
-                            <h4 class="font-serif-aesthetic font-bold text-base sm:text-lg text-brand-dark mt-0.5">Hacer Espacio</h4>
-                        </div>
-                        <div class="md:col-span-9 text-brand-dark/70 text-xs leading-relaxed">
-                            Sesión inicial de escucha profunda. Identificamos las zonas de mayor rigidez en tu cuerpo. Desarrollamos tus primeras dosis de micro-movimientos diarios (10 minutos) dedicados exclusivamente a liberar el diafragma y aliviar el cansancio muscular inicial.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Fase 2 -->
-                <div class="relative pl-6 sm:pl-12">
-                    <span class="absolute -left-1.5 top-2 bg-brand-accent w-3 h-3 rounded-full border border-white"></span>
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-2 sm:gap-4">
-                        <div class="md:col-span-3">
-                            <span class="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-brand-accent">Semanas 3 & 4</span>
-                            <h4 class="font-serif-aesthetic font-bold text-base sm:text-lg text-brand-dark mt-0.5">Conectar y Soltar</h4>
-                        </div>
-                        <div class="md:col-span-9 text-brand-dark/70 text-xs leading-relaxed">
-                            Nos enfocamos en desbloquear puntos clave como la cadera y los hombros. Empezás a descubrir la diferencia entre moverte desde la autoexigencia y moverte para liberar tensión. Tu cuerpo empieza a asimilar el descanso profundo y reparador.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Fase 3 -->
-                <div class="relative pl-6 sm:pl-12">
-                    <span class="absolute -left-1.5 top-2 bg-brand-accent w-3 h-3 rounded-full border border-white"></span>
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-2 sm:gap-4">
-                        <div class="md:col-span-3">
-                            <span class="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-brand-accent">Semanas 5 & 6</span>
-                            <h4 class="font-serif-aesthetic font-bold text-base sm:text-lg text-brand-dark mt-0.5">Despertar la Fuerza</h4>
-                        </div>
-                        <div class="md:col-span-9 text-brand-dark/70 text-xs leading-relaxed">
-                            Integración suave de fuerza consciente. Movernos sintiendo el sostén de nuestros propios músculos. Ganamos tono, estabilidad y nos paramos en la vida con mayor confianza física, regulando la energía interna sin fatigar tu día de trabajo.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Fase 4 -->
-                <div class="relative pl-6 sm:pl-12">
-                    <span class="absolute -left-1.5 top-2 bg-brand-accent w-3 h-3 rounded-full border border-white"></span>
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-2 sm:gap-4">
-                        <div class="md:col-span-3">
-                            <span class="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-brand-accent">Semanas 7 & 8</span>
-                            <h4 class="font-serif-aesthetic font-bold text-base sm:text-lg text-brand-dark mt-0.5">Autonomía y Bienestar</h4>
-                        </div>
-                        <div class="md:col-span-9 text-brand-dark/70 text-xs leading-relaxed">
-                            Te llevás tus propias herramientas de autorregulación. Aprendés a leer a tu cuerpo en el día a día para saber qué necesita según la energía de cada mañana. Automatizamos el bienestar sin culpa y de manera totalmente natural.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TEST DE MAPA DE TENSIÓN: Elegante, interactivo y cero confrontativo -->
-    <section id="perfil" class="py-16 sm:py-24 bg-brand-bg relative border-t border-brand-softSand/60">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6">
-            <div class="bg-white p-6 sm:p-12 rounded-3xl shadow-xl shadow-brand-dark/5 border border-brand-softSand/50 space-y-8">
-                
-                <div class="text-center space-y-2" id="quiz-intro">
-                    <span class="text-brand-accent font-semibold text-xs uppercase tracking-wider">Autodescubrimiento</span>
-                    <h2 class="font-serif-aesthetic text-2xl sm:text-3xl font-light text-brand-dark">Creá tu Mapa de Tensión Corporal</h2>
-                    <p class="text-brand-dark/60 text-xs max-w-md mx-auto leading-relaxed">Respondé estas 4 preguntas rápidas para ver cómo procesa tu cuerpo el ritmo diario y recibir una valoración corporal personalizada.</p>
-                </div>
-
-                <!-- Progress Bar -->
-                <div class="w-full bg-brand-bg h-1 rounded-full overflow-hidden">
-                    <div id="quiz-progress" class="bg-brand-accent h-full transition-all duration-300" style="width: 25%"></div>
-                </div>
-
-                <!-- Quiz Form Step-by-Step -->
-                <div id="quiz-container" class="space-y-6">
-                    <!-- Question 1 -->
-                    <div id="q1" class="quiz-step space-y-4">
-                        <h3 class="font-serif-aesthetic text-lg sm:text-xl text-brand-dark">1. ¿Cómo sentís tu nivel de energía física al mediodía?</h3>
-                        <div class="grid grid-cols-1 gap-3">
-                            <button onclick="answerQuestion(1, 'El cuerpo me pesa y me cuesta concentrarme en lo que hago')" class="q-option p-4 text-left rounded-2xl border border-brand-softSand hover:border-brand-accent hover:bg-brand-bg/20 transition text-xs sm:text-sm text-brand-dark/80">
-                                El cuerpo me pesa y me cuesta concentrarme en lo que hago
-                            </button>
-                            <button onclick="answerQuestion(1, 'Siento tensión física o alerta, como si estuviera apurado/a sin motivo real')" class="q-option p-4 text-left rounded-2xl border border-brand-softSand hover:border-brand-accent hover:bg-brand-bg/20 transition text-xs sm:text-sm text-brand-dark/80">
-                                Siento tensión física o alerta, como si estuviera apurado/a sin motivo real
-                            </button>
-                            <button onclick="answerQuestion(1, 'Me cuesta un montón arrancar y tengo una pesadez constante')" class="q-option p-4 text-left rounded-2xl border border-brand-softSand hover:border-brand-accent hover:bg-brand-bg/20 transition text-xs sm:text-sm text-brand-dark/80">
-                                Me cuesta un montón arrancar y tengo una pesadez constante
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Question 2 (Hidden Initially) -->
-                    <div id="q2" class="quiz-step hidden space-y-4">
-                        <h3 class="font-serif-aesthetic text-lg sm:text-xl text-brand-dark">2. Al pensar en entrenar o hacer ejercicio tradicional...</h3>
-                        <div class="grid grid-cols-1 gap-3">
-                            <button onclick="answerQuestion(2, 'Lo veo como una obligación pesada y me genera culpa no tener la voluntad para ir')" class="q-option p-4 text-left rounded-2xl border border-brand-softSand hover:border-brand-accent hover:bg-brand-bg/20 transition text-xs sm:text-sm text-brand-dark/80">
-                                Lo veo como una obligación pesada y me genera culpa no tener la voluntad para ir
-                            </button>
-                            <button onclick="answerQuestion(2, 'Lo hago pero termino sintiendo el cuerpo más rígido, cansado o dolorido')" class="q-option p-4 text-left rounded-2xl border border-brand-softSand hover:border-brand-accent hover:bg-brand-bg/20 transition text-xs sm:text-sm text-brand-dark/80">
-                                Lo hago pero termino sintiendo el cuerpo más rígido, cansado o dolorido
-                            </button>
-                            <button onclick="answerQuestion(2, 'No tengo fuerza ni ganas de empezar porque siento que mi cuerpo no da más')" class="q-option p-4 text-left rounded-2xl border border-brand-softSand hover:border-brand-accent hover:bg-brand-bg/20 transition text-xs sm:text-sm text-brand-dark/80">
-                                No tengo fuerza ni ganas de empezar porque siento que mi cuerpo no da más
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Question 3 (Hidden Initially) -->
-                    <div id="q3" class="quiz-step hidden space-y-4">
-                        <h3 class="font-serif-aesthetic text-lg sm:text-xl text-brand-dark">3. ¿Cómo definirías el estado de tus pensamientos en el día?</h3>
-                        <div class="grid grid-cols-1 gap-3">
-                            <button onclick="answerQuestion(3, 'Tengo la cabeza muy llena de cosas y me cuesta disfrutar el presente')" class="q-option p-4 text-left rounded-2xl border border-brand-softSand hover:border-brand-accent hover:bg-brand-bg/20 transition text-xs sm:text-sm text-brand-dark/80">
-                                Tengo la cabeza muy llena de cosas y me cuesta disfrutar el presente
-                            </button>
-                            <button onclick="answerQuestion(3, 'La mente me da vueltas sobre todo de noche, lo que afecta mi sueño')" class="q-option p-4 text-left rounded-2xl border border-brand-softSand hover:border-brand-accent hover:bg-brand-bg/20 transition text-xs sm:text-sm text-brand-dark/80">
-                                La mente me da vueltas sobre todo de noche, lo que afecta mi sueño
-                            </button>
-                            <button onclick="answerQuestion(3, 'Siento embotamiento, como si tuviera la mente cansada y me costara pensar')" class="q-option p-4 text-left rounded-2xl border border-brand-softSand hover:border-brand-accent hover:bg-brand-bg/20 transition text-xs sm:text-sm text-brand-dark/80">
-                                Siento embotamiento, como si tuviera la mente cansada y me costara pensar
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Question 4 (Hidden Initially) -->
-                    <div id="q4" class="quiz-step hidden space-y-4">
-                        <h3 class="font-serif-aesthetic text-lg sm:text-xl text-brand-dark">4. ¿Cuál es tu nombre? (Para personalizar tu devolución)</h3>
-                        <div class="space-y-4">
-                            <input type="text" id="client-name" placeholder="Escribí tu nombre..." class="w-full p-4 rounded-2xl border border-brand-softSand focus:border-brand-accent focus:outline-none text-brand-dark font-medium text-base bg-brand-bg/20">
-                            <button onclick="submitQuiz()" class="w-full bg-brand-dark hover:bg-brand-accent text-[#faf6f0] py-4 rounded-full font-semibold text-xs uppercase tracking-wider transition flex items-center justify-center space-x-2 shrink-0">
-                                <span>Ver mi diagnóstico corporal</span>
-                                <i data-lucide="arrow-right" class="w-4 h-4 shrink-0"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Finished screen -->
-                    <div id="quiz-result" class="hidden text-center space-y-6 py-6">
-                        <div class="w-14 h-14 bg-brand-softGreen/10 text-brand-softGreen rounded-full flex items-center justify-center mx-auto shrink-0">
-                            <i data-lucide="sparkles" class="w-7 h-7"></i>
-                        </div>
-                        <div class="space-y-2">
-                            <h3 class="font-serif-aesthetic text-xl sm:text-2xl font-light text-brand-dark">Tu mapa está listo, <span id="display-name" class="text-brand-accent italic font-normal"></span>.</h3>
-                            <p class="text-brand-dark/60 text-xs max-w-md mx-auto leading-relaxed">Tu cuerpo ha estado sosteniendo un nivel muy alto de sobrecarga diaria. Tu sistema físico requiere un reseteo suave de descompresión corporal para liberar las tensiones acumuladas de las que hablamos.</p>
-                        </div>
-                        <div class="bg-brand-bg p-5 sm:p-6 rounded-3xl border border-brand-softSand/50 max-w-md mx-auto text-left space-y-3">
-                            <p class="text-[10px] font-bold text-brand-dark/40 uppercase tracking-wider">Tu perfil identificado:</p>
-                            <ul class="text-xs text-brand-dark/75 space-y-2 list-disc list-inside">
-                                <li><strong>Sensación de mediodía:</strong> <span id="r-sintoma"></span></li>
-                                <li><strong>Relación con el ejercicio:</strong> <span id="r-ejercicio"></span></li>
-                                <li><strong>Carga mental:</strong> <span id="r-sueno"></span></li>
-                            </ul>
-                        </div>
-                        <div class="space-y-3 pt-2">
-                            <button onclick="sendToWhatsApp()" class="w-full max-w-md bg-brand-accent hover:bg-brand-accentHover text-[#faf6f0] py-4 rounded-full font-semibold text-xs uppercase tracking-wider transition shadow-lg flex items-center justify-center space-x-2 mx-auto shrink-0">
-                                <i data-lucide="message-square" class="w-5 h-5 shrink-0"></i>
-                                <span>Solicitar Devolución Gratis</span>
-                            </button>
-                            <p class="text-[10px] text-brand-dark/45 max-w-xs mx-auto">Al hacer clic se abrirá tu WhatsApp con tus respuestas precargadas. Te voy a responder personalmente con un análisis de tu mapa de tensión.</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de Valor e Inversión Premium -->
-    <section class="py-16 sm:py-24 bg-white">
-        <div class="max-w-4xl mx-auto px-6 space-y-12">
-            <div class="text-center space-y-4">
-                <span class="text-brand-accent font-semibold text-xs uppercase tracking-wider font-sans">El Acompañamiento</span>
-                <h2 class="font-serif-aesthetic text-2xl sm:text-4xl text-brand-dark font-light">Elegir tu Espacio de Calma</h2>
-                <p class="text-xs sm:text-sm text-brand-dark/70">Un programa uno a uno, íntimo, sin prisa y totalmente adaptado a tu día a día.</p>
-            </div>
-
-            <!-- Card High-Ticket Minimalista Premium -->
-            <div class="bg-brand-bg rounded-3xl p-6 sm:p-12 border border-brand-softSand/60 space-y-8 relative overflow-hidden">
-                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
-                    <div>
-                        <span class="bg-brand-softGreen text-[#faf6f0] font-semibold text-[10px] uppercase px-3 py-1 rounded-full tracking-wider">Programa Exclusivo</span>
-                        <h3 class="font-serif-aesthetic text-2xl sm:text-3xl text-brand-dark font-light mt-3">Mentoría de Conexión Cuerpo y Mente (8 Semanas)</h3>
-                        <p class="text-brand-dark/60 text-xs mt-1.5 max-w-lg">Trabajamos estrechamente para desarmar los patrones de cansancio corporal, liberar tu respiración y devolverle el espacio y la ligereza a tu sistema nervioso.</p>
-                    </div>
-                    <div class="text-left lg:text-right bg-white p-5 rounded-2xl border border-brand-softSand/60 shrink-0 w-full lg:w-auto">
-                        <p class="text-[10px] text-brand-dark/40 font-bold uppercase tracking-wider">Inversión en vos</p>
-                        <p class="font-serif-aesthetic text-xl sm:text-2xl font-semibold mt-1 text-brand-dark">Postulación Abierta</p>
-                        <p class="text-[10px] text-brand-dark/50">Sesión de admisión gratuita incluida</p>
-                    </div>
-                </div>
-
-                <hr class="border-brand-dark/10">
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-brand-dark/80">
-                    <ul class="space-y-4">
-                        <li class="flex items-start space-x-3">
-                            <i data-lucide="check" class="text-brand-accent w-4 h-4 flex-shrink-0 mt-0.5"></i>
-                            <span>Evaluación y mapeo inicial de contracturas y rigidez corporal acumulada.</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i data-lucide="check" class="text-brand-accent w-4 h-4 flex-shrink-0 mt-0.5"></i>
-                            <span>Plan semanal personalizado de micro-movimientos de descompresión física (10-15 min).</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i data-lucide="check" class="text-brand-accent w-4 h-4 flex-shrink-0 mt-0.5"></i>
-                            <span>Ejercicios de respiración SOS para calmar la mente y liberar la opresión del pecho.</span>
-                        </li>
-                    </ul>
-                    <ul class="space-y-4">
-                        <li class="flex items-start space-x-3">
-                            <i data-lucide="check" class="text-brand-accent w-4 h-4 flex-shrink-0 mt-0.5"></i>
-                            <span>Canal directo y diario de soporte y escucha atenta vía WhatsApp.</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i data-lucide="check" class="text-brand-accent w-4 h-4 flex-shrink-0 mt-0.5"></i>
-                            <span>Ajustes en el día según tu energía (si estás muy cansado/a adaptamos la sesión).</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i data-lucide="check" class="text-brand-accent w-4 h-4 flex-shrink-0 mt-0.5"></i>
-                            <span>Llamadas virtuales quincenales de reajuste corporal e integración de hábitos saludables.</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="pt-6 text-center">
-                    <a href="#perfil" class="inline-flex bg-brand-accent hover:bg-brand-accentHover text-[#faf6f0] px-6 py-4 rounded-full font-semibold text-xs uppercase tracking-wider transition shadow-lg items-center justify-center space-x-2 shrink-0 w-full sm:w-auto">
-                        <span>Quiero postularme y agendar llamada de admisión gratis</span>
-                        <i data-lucide="chevron-right" class="w-4 h-4 shrink-0"></i>
-                    </a>
-                    <p class="text-[10px] text-brand-dark/50 mt-3">Solo acompaño a 8 personas de forma simultánea para garantizar un cuidado absoluto, íntimo y profundo de cada proceso.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Elegante -->
-    <section class="py-16 sm:py-24 bg-brand-bg border-t border-brand-softSand/60">
-        <div class="max-w-3xl mx-auto px-6 space-y-12">
-            <h2 class="font-serif-aesthetic text-2xl sm:text-3xl text-brand-dark font-light text-center">Espacio de respuestas</h2>
-            
-            <div class="space-y-4">
-                <!-- FAQ 1 -->
-                <div class="bg-white rounded-2xl p-6 space-y-2 border border-brand-softSand/40">
-                    <button onclick="toggleFaq(1)" class="w-full flex justify-between items-center text-left font-serif-aesthetic font-semibold text-brand-dark text-base focus:outline-none">
-                        <span>¿Esto es como hacer yoga o pilates?</span>
-                        <i id="faq-icon-1" data-lucide="chevron-down" class="w-4 h-4 text-brand-dark/40 transition-transform shrink-0"></i>
-                    </button>
-                    <p id="faq-ans-1" class="hidden text-xs text-brand-dark/70 leading-relaxed pt-2">
-                        Aunque toma principios de la biomecánica y el movimiento consciente, el Método Marinas no sigue un sistema cerrado o exigente. Se enfoca exclusivamente en indicarle a tu cuerpo que puede bajar el estado de alerta diaria mediante movimientos muy suaves, respiración profunda y pequeños automasajes en zonas clave. Es un reseteo biológico de calma física y mental.
-                    </p>
-                </div>
-
-                <!-- FAQ 2 -->
-                <div class="bg-white rounded-2xl p-6 space-y-2 border border-brand-softSand/40">
-                    <button onclick="toggleFaq(2)" class="w-full flex justify-between items-center text-left font-serif-aesthetic font-semibold text-brand-dark text-base focus:outline-none">
-                        <span>¿Y si no tengo nada de tiempo o me cuesta mantener rutinas?</span>
-                        <i id="faq-icon-2" data-lucide="chevron-down" class="w-4 h-4 text-brand-dark/40 transition-transform shrink-0"></i>
-                    </button>
-                    <p id="faq-ans-2" class="hidden text-xs text-brand-dark/70 leading-relaxed pt-2">
-                        El método está diseñado especialmente para personas con rutinas cargadas. Solo te va a requerir entre 10 y 15 minutos al día, y se integra de manera orgánica en tu jornada de trabajo o tus descansos. No necesitás cambiarte de ropa ni salir de tu casa. El objetivo es que se sienta como un alivio, nunca como una obligación más.
-                    </p>
-                </div>
-
-                <!-- FAQ 3 -->
-                <div class="bg-white rounded-2xl p-6 space-y-2 border border-brand-softSand/40">
-                    <button onclick="toggleFaq(3)" class="w-full flex justify-between items-center text-left font-serif-aesthetic font-semibold text-brand-dark text-base focus:outline-none">
-                        <span>¿Tengo que comprar algún equipo o colchoneta?</span>
-                        <i id="faq-icon-3" data-lucide="chevron-down" class="w-4 h-4 text-brand-dark/40 transition-transform shrink-0"></i>
-                    </button>
-                    <p id="faq-ans-3" class="hidden text-xs text-brand-dark/70 leading-relaxed pt-2">
-                        Para nada. No necesitás comprar absolutamente nada costoso. Usamos el peso de tu propio cuerpo, una silla común, la pared, almohadones de tu sillón o cosas simples que ya tenés a mano en tu casa. Lo valioso es la precisión en el movimiento y cómo conecta con tu bienestar.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="mt-auto bg-brand-dark text-brand-bg/60 py-16 border-t border-brand-dark/20">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-xs">
-            <div class="space-y-4">
-                <div class="flex items-center space-x-2 text-[#faf6f0]">
-                    <span class="p-1 bg-brand-accent rounded-full text-brand-dark shrink-0">
-                        <i data-lucide="leaf" class="w-4 h-4"></i>
-                    </span>
-                    <span class="font-serif-aesthetic italic font-semibold text-xl">Método Marinas</span>
-                </div>
-                <p class="leading-relaxed">Un espacio de encuentro corporal para recuperar el bienestar físico y la quietud interior de manera amable.</p>
-            </div>
-            <div></div>
-            <div class="space-y-2">
-                <h4 class="font-serif-aesthetic font-semibold text-[#faf6f0] text-sm">Espacio de Respeto</h4>
-                <p class="leading-relaxed">
-                    Las devoluciones y sesiones de admisión son gratuitas y confidenciales. El Método Marinas acompaña de forma integral tu salud y tu día a día, potenciando tu bienestar. No reemplaza el acompañamiento terapéutico convencional, sino que lo abraza y lo potencia.
-                </p>
-            </div>
-        </div>
-        <div class="max-w-6xl mx-auto px-6 pt-10 mt-10 border-t border-brand-bg/10 text-center text-[10px]">
-            © 2026 Método Marinas. Volver a habitar nuestro cuerpo en calma.
-        </div>
-    </footer>
-
-    <!-- Script de Interactividad y Lógica -->
-    <script>
-        // Inicializar iconos
-        lucide.createIcons();
-
-        // Número de WhatsApp configurado en formato internacional para Argentina (54 9 11 7109-1307)
-        const NUMERO_WHATSAPP = "5491171091307"; 
-
-        // Respuestas corporales interactivas del Hero
-        const responses = {
-            pecho: "El pecho cerrado y la respiración superficial ocurren cuando tu caja torácica y el diafragma se tensan involuntariamente. Usamos estiramientos pausados de apertura costal combinados con exhalaciones largas. Esto calma el sistema nervioso de inmediato y le demuestra a tu mente que hay espacio para respirar con total tranquilidad.",
-            hombros: "La tensión en el cuello y la mandíbula es el reflejo corporal de sostener las presiones diarias sin pausa. Con automasajes suaves en la mandíbula y liberaciones musculares sutiles en la espalda alta, vas a notar cómo tu cuello se afloja y vuelve a su eje natural, aliviando la pesadez de tu cabeza.",
-            lumbar: "La zona lumbar reacciona contrayéndose ante el sedentarismo y los estados prolongados de alerta. Aplicamos estiramientos pasivos específicos y liberaciones pélvicas tumbados en el suelo, permitiendo que la espalda baja descanse de verdad y libere esa rigidez incómoda con la que solés levantarte por la mañana."
-        };
-
-        function selectSymptom(key) {
-            // Deseleccionar todos
-            document.querySelectorAll('#symptoms-container button').forEach(btn => {
-                btn.classList.remove('border-brand-accent', 'bg-white');
-                btn.classList.add('border-brand-softSand', 'bg-brand-bg/40');
+            // Actualizar estilos de botones
+            buttons.forEach((btn, i) => {
+                if(i === index) {
+                    btn.classList.add('bg-white/5', 'border-naranja');
+                } else {
+                    btn.classList.remove('bg-white/5', 'border-naranja');
+                }
             });
-            // Seleccionar el clicado
-            const activeBtn = document.getElementById(`sym-${key}`);
-            activeBtn.classList.add('border-brand-accent', 'bg-white');
-            
-            // Mostrar respuesta
-            const responseBox = document.getElementById('symptom-response');
-            const responseText = document.getElementById('symptom-text');
-            responseText.innerText = responses[key];
-            responseBox.classList.remove('hidden');
-        }
-
-        // --- SISTEMA DEL TEST INTERACTIVO ---
-        let currentStep = 1;
-        const answers = {
-            sintoma: '',
-            ejercicio: '',
-            sueno: '',
-            nombre: ''
-        };
-
-        function answerQuestion(step, value) {
-            if (step === 1) {
-                answers.sintoma = value;
-                goToStep(2);
-            } else if (step === 2) {
-                answers.ejercicio = value;
-                goToStep(3);
-            } else if (step === 3) {
-                answers.sueno = value;
-                goToStep(4);
-            }
-        }
-
-        function goToStep(step) {
-            // Ocultar todos los pasos
-            document.querySelectorAll('.quiz-step').forEach(el => el.classList.add('hidden'));
-            
-            // Mostrar paso actual
-            const nextStepEl = document.getElementById(`q${step}`);
-            if (nextStepEl) {
-                nextStepEl.classList.remove('hidden');
-            }
-            
-            // Actualizar barra de progreso
-            const progress = document.getElementById('quiz-progress');
-            progress.style.width = `${(step / 4) * 100}%`;
-            currentStep = step;
-        }
-
-        function submitQuiz() {
-            const nameInput = document.getElementById('client-name');
-            if (!nameInput.value.trim()) {
-                nameInput.classList.add('border-red-400');
-                return;
-            }
-            nameInput.classList.remove('border-red-400');
-            answers.nombre = nameInput.value.trim();
-
-            // Rellenar pantalla de resultados
-            document.getElementById('display-name').innerText = answers.nombre;
-            document.getElementById('r-sintoma').innerText = answers.sintoma;
-            document.getElementById('r-ejercicio').innerText = answers.ejercicio;
-            document.getElementById('r-sueno').innerText = answers.sueno;
-
-            // Mostrar resultados
-            document.getElementById('q4').classList.add('hidden');
-            document.getElementById('quiz-intro').classList.add('hidden');
-            document.getElementById('quiz-result').classList.remove('hidden');
-            document.getElementById('quiz-progress').style.width = "100%";
-        }
-
-        function sendToWhatsApp() {
-            // Mensaje sumamente elegante para el cliente
-            const text = `¡Hola Jonathan! Mi nombre es ${answers.nombre}. Estuve recorriendo tu web de Método Marinas y completé el Mapa de Tensión Corporal para entender mejor cómo está mi cuerpo hoy. Mis respuestas fueron:
-
-- Mi energía física al mediodía: ${answers.sintoma}
-- Al pensar en entrenar: ${answers.ejercicio}
-- Estado de mis pensamientos: ${answers.sueno}
-
-Me gustaría coordinar la videollamada gratuita para conocernos y que me cuentes cómo es el proceso de mentoría personalizada uno a uno de 8 semanas.`;
-
-            const encodedText = encodeURIComponent(text);
-            const url = `https://wa.me/${1171091307}?text=${encodedText}`;
-            window.open(url, '_blank');
-        }
-
-        // --- FAQ ACORDEÓN ---
-        function toggleFaq(id) {
-            const ans = document.getElementById(`faq-ans-${id}`);
-            const icon = document.getElementById(`faq-icon-${id}`);
-            
-            if (ans.classList.contains('hidden')) {
-                ans.classList.remove('hidden');
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                ans.classList.add('hidden');
-                icon.style.transform = 'rotate(0deg)';
-            }
         }
     </script>
 </body>
